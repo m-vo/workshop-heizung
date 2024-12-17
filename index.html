@@ -1,0 +1,518 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WS Heizung</title>
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/moon.css">
+    <link rel="stylesheet" href="plugin/highlight/lioshi.css">
+    <link rel="stylesheet" href="plugin/chalkboard/chalkboard_style.css">
+    <link rel="stylesheet" href="plugin/chalkboard/controls_style.css">
+    <link rel="stylesheet" href="plugin/chalkboard/fontawesome_all.min.css">
+    <script src="plugin/chalkboard/fontawesome_all.min.js"></script>
+
+    <style>
+        :root {
+            --r-main-font: sans-serif;
+            --r-heading-text-transform: none;
+        }
+
+        @font-face {
+            font-family: "Architects Daughter";
+            src: local("Architects Daughter"),
+            url("fonts/architects-daughter-v6-latin-regular.woff2") format("woff2"),
+            url("fonts/architects-daughter-v6-latin-regular.woff") format("woff");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .warm {
+            color: #df330c
+        }
+
+        .cold {
+            color: #0570b3;
+        }
+
+        .big {
+            font-size: 2em;
+            background-color: #ffffffdd;
+            padding: .1em .2em;
+            border-radius: 10px;
+            border: 3px solid #9c9c9c;
+            box-shadow: rgba(110, 110, 110, 0.5) 0 0 .5em;
+        }
+
+        section > ul > li + li {
+            margin-top: .5em;
+        }
+
+        .list-add {
+            font-size: .75em;
+            color: #dcdcdc;
+        }
+
+        .list-add2 {
+            font-size: .75em;
+            color: #8f8f8f;
+            margin-bottom: .4em;
+            display: flex;
+        }
+
+        .x-stack {
+            display: grid;
+        }
+
+        .x-stack > * {
+            grid-row: 1;
+            grid-column: 1;
+            opacity: 0 !important;
+        }
+
+        .x-stack .x-stack-visible {
+            opacity: 1 !important;
+        }
+
+        .line-through {
+            text-decoration: line-through;
+        }
+
+        .all-red, .all-red * {
+            color: #c32e12;
+        }
+
+        .all-orange, .all-orange * {
+            color: #c37612;
+        }
+
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section data-background="images/title.webp"></section>
+
+        <section data-background="images/haus.webp" data-transition="fade" data-background-size="cover">
+            <div class="r-stack stretch">
+                <div class="fragment warm big" style="transform: translateX(7rem) translateY(4rem);">22 <span
+                        style="font-size: smaller">°C</span></div>
+                <div class="fragment cold big" style="transform: translateX(-20rem) translateY(-10rem);">-3 <span
+                        style="font-size: smaller">°C</span></div>
+                <div class="fragment warm r-stack">
+                    <div style="transform: translateX(-2rem) translateY(-7.5rem) rotate(40deg) scale(.5);">
+                        <svg width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M3 12L10 5V9H20.2C20.48 9 20.62 9 20.727 9.0545C20.8211 9.10243 20.8976 9.17892 20.9455 9.273C21 9.37996 21 9.51997 21 9.8V14.2C21 14.48 21 14.62 20.9455 14.727C20.8976 14.8211 20.8211 14.8976 20.727 14.9455C20.62 15 20.48 15 20.2 15H10V19L3 12Z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div style="transform: translateX(-4rem) translateY(6rem) rotate(-5deg) scale(.5);">
+                        <svg width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M3 12L10 5V9H20.2C20.48 9 20.62 9 20.727 9.0545C20.8211 9.10243 20.8976 9.17892 20.9455 9.273C21 9.37996 21 9.51997 21 9.8V14.2C21 14.48 21 14.62 20.9455 14.727C20.8976 14.8211 20.8211 14.8976 20.727 14.9455C20.62 15 20.48 15 20.2 15H10V19L3 12Z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div style="transform: translateX(7.5rem) translateY(-15rem) rotate(60deg) scale(.5);">
+                        <svg width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M3 12L10 5V9H20.2C20.48 9 20.62 9 20.727 9.0545C20.8211 9.10243 20.8976 9.17892 20.9455 9.273C21 9.37996 21 9.51997 21 9.8V14.2C21 14.48 21 14.62 20.9455 14.727C20.8976 14.8211 20.8211 14.8976 20.727 14.9455C20.62 15 20.48 15 20.2 15H10V19L3 12Z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div style="transform: translateX(21rem) translateY(-11.5rem) rotate(135deg) scale(.5);">
+                        <svg width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M3 12L10 5V9H20.2C20.48 9 20.62 9 20.727 9.0545C20.8211 9.10243 20.8976 9.17892 20.9455 9.273C21 9.37996 21 9.51997 21 9.8V14.2C21 14.48 21 14.62 20.9455 14.727C20.8976 14.8211 20.8211 14.8976 20.727 14.9455C20.62 15 20.48 15 20.2 15H10V19L3 12Z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div style="transform: translateX(28rem) translateY(2.5rem) rotate(175deg) scale(.5);">
+                        <svg width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M3 12L10 5V9H20.2C20.48 9 20.62 9 20.727 9.0545C20.8211 9.10243 20.8976 9.17892 20.9455 9.273C21 9.37996 21 9.51997 21 9.8V14.2C21 14.48 21 14.62 20.9455 14.727C20.8976 14.8211 20.8211 14.8976 20.727 14.9455C20.62 15 20.48 15 20.2 15H10V19L3 12Z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section data-background="images/haus.webp" data-transition="fade">
+            <div class="r-stack stretch">
+                <div class="cold big" style="transform: translateX(7rem) translateY(4rem);">-3 <span
+                        style="font-size: smaller">°C</span></div>
+                <div class="cold big" style="transform: translateX(-20rem) translateY(-10rem);">-3 <span
+                        style="font-size: smaller">°C</span></div>
+            </div>
+        </section>
+
+        <section data-background="images/haus.webp" data-transition="fade">
+            <div class="r-stack stretch">
+                <div class="warm big" style="transform: translateX(7rem) translateY(4rem);">22 <span
+                        style="font-size: smaller">°C</span></div>
+                <div class="cold big" style="transform: translateX(-20rem) translateY(-10rem);">-3 <span
+                        style="font-size: smaller">°C</span></div>
+                <div class="warm r-stack">
+                    <div style="transform: translateX(-2rem) translateY(-7.5rem) rotate(40deg) scale(.5);">
+                        <svg width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M3 12L10 5V9H20.2C20.48 9 20.62 9 20.727 9.0545C20.8211 9.10243 20.8976 9.17892 20.9455 9.273C21 9.37996 21 9.51997 21 9.8V14.2C21 14.48 21 14.62 20.9455 14.727C20.8976 14.8211 20.8211 14.8976 20.727 14.9455C20.62 15 20.48 15 20.2 15H10V19L3 12Z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div style="transform: translateX(-4rem) translateY(6rem) rotate(-5deg) scale(.5);">
+                        <svg width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M3 12L10 5V9H20.2C20.48 9 20.62 9 20.727 9.0545C20.8211 9.10243 20.8976 9.17892 20.9455 9.273C21 9.37996 21 9.51997 21 9.8V14.2C21 14.48 21 14.62 20.9455 14.727C20.8976 14.8211 20.8211 14.8976 20.727 14.9455C20.62 15 20.48 15 20.2 15H10V19L3 12Z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div style="transform: translateX(7.5rem) translateY(-15rem) rotate(60deg) scale(.5);">
+                        <svg width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M3 12L10 5V9H20.2C20.48 9 20.62 9 20.727 9.0545C20.8211 9.10243 20.8976 9.17892 20.9455 9.273C21 9.37996 21 9.51997 21 9.8V14.2C21 14.48 21 14.62 20.9455 14.727C20.8976 14.8211 20.8211 14.8976 20.727 14.9455C20.62 15 20.48 15 20.2 15H10V19L3 12Z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div style="transform: translateX(21rem) translateY(-11.5rem) rotate(135deg) scale(.5);">
+                        <svg width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M3 12L10 5V9H20.2C20.48 9 20.62 9 20.727 9.0545C20.8211 9.10243 20.8976 9.17892 20.9455 9.273C21 9.37996 21 9.51997 21 9.8V14.2C21 14.48 21 14.62 20.9455 14.727C20.8976 14.8211 20.8211 14.8976 20.727 14.9455C20.62 15 20.48 15 20.2 15H10V19L3 12Z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div style="transform: translateX(28rem) translateY(2.5rem) rotate(175deg) scale(.5);">
+                        <svg width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path d="M3 12L10 5V9H20.2C20.48 9 20.62 9 20.727 9.0545C20.8211 9.10243 20.8976 9.17892 20.9455 9.273C21 9.37996 21 9.51997 21 9.8V14.2C21 14.48 21 14.62 20.9455 14.727C20.8976 14.8211 20.8211 14.8976 20.727 14.9455C20.62 15 20.48 15 20.2 15H10V19L3 12Z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="fragment warm"
+                     style="transform: translateX(11rem) translateY(13rem) rotate(85deg) scaleX(.8) scaleY(1);">
+                    <svg width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path d="M3 12L10 5V9H20.2C20.48 9 20.62 9 20.727 9.0545C20.8211 9.10243 20.8976 9.17892 20.9455 9.273C21 9.37996 21 9.51997 21 9.8V14.2C21 14.48 21 14.62 20.9455 14.727C20.8976 14.8211 20.8211 14.8976 20.727 14.9455C20.62 15 20.48 15 20.2 15H10V19L3 12Z"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section data-background="images/haus_dim.webp" data-transition="fade">
+            <h3>Von was hängt die Größe des Wärmestroms ab?</h3>
+            <ul>
+                <li class="fragment">Temperaturdifferenz [∆t]<br><span
+                        class="list-add">Außentemperatur / Raumtemperatur</span></li>
+                <li class="fragment">Kontaktfläche<br><span class="list-add">Wand-/Boden-/Deckenflächen</span></li>
+                <li class="fragment">Widerstand<br><span
+                        class="list-add">Materialbeschaffenheit / Dämmung</span><br><span class="fragment list-add">Lüftungsverhalten</span>
+                </li>
+            </ul>
+        </section>
+
+        <section data-background="images/haus_dim.webp" data-transition="fade">
+            <h3>Wie groß ist der Wärmestrom absolut?</h3>
+            <ul>
+                <li class="fragment" data-fragment-index="1">Messen<br><span class="list-add">Wärmemengenzähler am Erzeuger</span>
+                    <div data-fragment-index="1" class="fragment fade-in-then-out"
+                         style="position: absolute; margin-top: .5em; width: 8em; height: 8em; border: 3px solid #ddd; border-radius: 50%; background: url('images/wmz.jpg') center center no-repeat; background-size: contain; background-color: #dcdcdd"></div>
+                </li>
+                <li data-fragment-index="2" class="fragment">Rechnen<br><span class="list-add">Bilanz: Heizlastberechnung</span>
+                </li>
+                <div class="fragment fade-up" style="color: #ffae17; position: absolute">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                         style="transform: scale(1.8) translateX(2.5em) translateY(.3em) rotate(160deg)">
+                        <path fill="currentColor"
+                              d="M1.478 21.932c.022-.36-.046-.31-.082-.59.074.033.105-.276.107-.395l-.016.006c.005-.178.06-.582.067-.875l-.04.012c.042-.246.025-.707.035-.885-.01-.404-.058-1.037.052-1.586a6.24 6.24 0 01-.074-.372l.018-.05c.003-.023 1.438-.344 1.65.348l.04-.005-.02.127c.006.157-.046.225-.005.218l.015-.213c-.002.157.03.05.057-.007a1.07 1.07 0 00.005.182c-.018.028-.015-.024-.02-.05-.023.082-.07.196-.062.3-.006.16.064.015.057.204-.033.993.027 1.98.06 3.01.017.024.015-.004.02-.034-.003.312.017.588.016.873.022.077.048.097.066.12-.04-.047.075 1.57.092 1.597l-.07.026c.026.31.09.082.1.37-.093.12.054.47.01.574.01-.003.026.136.057.124-.05.05 0 .146-.003.235-.012.033-.02-.02-.04-.044l.003.205c.026.076.06.092.058.006.04.327.2 1.423.33 2.34a.786.786 0 00.025-.06c.083-.355.19-.582.242-.847l.125-.228c.2-.602.745-2.075 1.383-3.512a48.95 48.95 0 011.657-3.4l-.03.04c.872-1.737 3.056-5.124 4.45-6.598.167-.265.443-.592.65-.842-.105.147-.04.122.05.015.65-.744.068-.03.742-.765.406-.407 1.34-1.43 2.33-2.376a61.155 61.155 0 012.39-2.18c.465-.297.97-.763 1.428-1.048l-.053.02c.448-.362 3.128-2.238 3.745-2.522l-.072.054c.527-.26.42-.285.813-.528-.017.095.44-.116.614-.197l-.015-.01c.26-.127.87-.37 1.303-.568l-.034-.03c.376-.134 1.047-.463 1.313-.568.593-.276 1.51-.716 2.372-.935.17-.095.343-.188.52-.278l.086-.013c.044-.01 1.178 1.12.232 1.682l.027.033-.204.056c-.236.093-.363.088-.334.12l.332-.11c-.242.087-.064.054.035.046-.1.036-.197.07-.275.11-.053 0 .03-.03.066-.05-.136.03-.332.054-.485.13-.25.09.004.064-.285.174-1.52.592-2.947 1.317-4.402 2.122-.025.033.015.01.06-.006-.446.23-.828.46-1.227.683-.1.08-.116.12-.14.154.033-.09-2.136 1.345-2.148 1.4l-.068-.04c-.405.287-.072.146-.45.406-.204.026-.604.462-.758.52.007.005-.168.147-.137.163-.088 0-.19.133-.31.21-.05.02.02-.037.04-.074l-.265.185c-.087.095-.09.14.02.057-.687.502-3.623 3.32-4.222 4.016.05-.115.262-.302.288-.426-.192.15-.233.27-.334.32.01.136-.345.406-.396.608l-.087.015-.055.113c-.745.76-.186.16-.792.883-.355.415-.583.564-.754.817.026-.036.078-.15-.024-.05.023.05-.258.272-.262.356-.09.104-.36.458-.32.3-.02.08-.245.408-.08.235-.08.11-.15.22-.218.288l.087-.15c-.28.357-.38.59-.598.798l.075-.153c-.16.22-.295.404-.3.53l.175-.218c-.26.367-.406.596-.646.888l.072-.112c-.335.35-1.664 2.488-1.923 2.858l.052-.204-.22.316c.018-.036.187-.074.228-.11-.463.723-2.234 4.557-2.42 5.297-.082.296.057.08.065.08-.15.34-.108.13-.216.43-.022.083.043-.004.067-.047-.055.128-.08.255-.107.257.042-.17-.043-.123-.057-.207l-.133.385.044-.003c-.03.086-.184.18-.295.564-.207.645-.45 1.338-.636 1.992.026-.004.08-.136.137-.268-.025.087-.072.217-.08.303.007-.17-.108.267-.088.138-.193.363-.286.855-.407 1.246l.077-.014a3.65 3.65 0 01.318-.034l-.08.02c.3.014 1.815-.315 2.1-.323l-.107.084.238-.023c-.025.01-.154-.13-.172-.105.495-.105 2.99-.91 3.396-1.147.162-.097 0-.09-.004-.095.217-.068.11.014.29-.063.044-.028-.027-.033-.057-.028.08-.025.146-.074.16-.054-.09.058-.023.1-.05.155l.228-.102-.024-.033c.05-.023.174.05.39-.072.37-.18.78-.358 1.147-.55-.016-.018-.1.008-.185.033.05-.025.128-.057.166-.096-.07.083.167-.053.105-.002.315-.05.62-.31.883-.383.055.073 1.263 1.03 1.325 1.113.076-.048.152-.095.17-.116-.006.032-.15.132-.24.167l-.04-.04c-.196.092-.027.056-.21.156.013.047.185-.043.334-.125-.13.082-.244.19-.324.176-.116.086.042.04-.1.143-.115.05-.277.09-.39.18l.006.005c-.28.206-.498.183-.756.366l.037-.002c-.087.074-.3.136-.466.25.046-.034.076-.086-.034-.04-.195.124-.35.164-.486.265l-.165.025c-.71.376-3.67 1.368-4.442 1.54h.032c-.582.157-1.47.394-2.38.582l-.346.068-.177.033-.046.008-.014.002c.04-.002-.374.027-.2.016H4.84l-.02-.002-.084-.004c-.22-.01-.438-.02-.645-.033l-.304-.017-.073-.004h-.022l-.003-.002h-.002c.563.254-.77-.344-.63-.283l-.002-.003-.026-.027-.094-.104-.176-.2-.042-.047-.005-.007-.233-.465v-.005l-.002-.017-.004-.03-.014-.12c-.075-.182-.107-.442-.15-.636.036.105.062.064.046-.02-.097-.596.023-.046-.05-.65-.073-.698-.463-3.352-.557-3.97.028-.34-.064-.75-.053-1.08l-.012.033c-.018-.35-.233-2.34-.22-2.757l.013.056z"/>
+                    </svg>
+                    <div style="font-family: 'Architects Daughter', cursive; transform: translateX(1.2em) translateY(0.7em) rotate(17deg);">
+                        Don't panic. 😊
+                    </div>
+                </div>
+            </ul>
+        </section>
+
+        <section
+                data-background-iframe="https://docs.google.com/spreadsheets/d/1FrqcWMmaezW470g2cBCe2LEIBk8CEqYhLMF7HAb_nEg/edit?gid=1178766132#gid=1178766132"
+                data-background-interactive>
+        </section>
+
+        <section data-background="images/heizquelle.webp" data-transition="fade">
+        </section>
+
+        <section data-background="images/heizquelle_dim.webp" data-transition="fade" style="font-size: 0.8em">
+            <h3>Welche Heizquelle hätten's gern?</h3>
+            <ul>
+                <li class="fragment x-stack" data-fragment-index="1">
+                    <div class="fragment" data-fragment-index="1">
+                        Sachen verbrennen
+                        <ul class="list-add">
+                            <li>Heizöl</li>
+                            <li>Erdgas</li>
+                            <li>Holz / Pellets</li>
+                        </ul>
+                    </div>
+                    <div class="fragment line-through all-red" data-fragment-index="4">
+                        Sachen verbrennen
+                        <ul class="list-add">
+                            <li>Heizöl</li>
+                            <li>Erdgas</li>
+                            <li class="line-through all-orange">Holz / Pellets</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="fragment x-stack" data-fragment-index="2">
+                    <div class="fragment" data-fragment-index="2">
+                        Vorhandene Wärmequelle nutzen
+                        <ul class="list-add">
+                            <li>Geothermie</li>
+                            <li>Abwärme</li>
+                        </ul>
+                    </div>
+                    <div class="fragment line-through" data-fragment-index="5">
+                        Vorhandene Wärmequelle nutzen
+                        <ul class="list-add">
+                            <li>Geothermie</li>
+                            <li>Abwärme</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="fragment x-stack" data-fragment-index="3">
+                    <div class="fragment" data-fragment-index="3">
+                        Strom als Energieträger
+                        <ul class="list-add">
+                            <li>Radiator / Nachtspeicherofen / Glühlampe / …</li>
+                            <li>Infrarotpanel</li>
+                            <li>Wärmepumpe<br><br>&nbsp;</li>
+                        </ul>
+                    </div>
+                    <div class="fragment" data-fragment-index="6">
+                        Strom als Energieträger
+                        <ul class="list-add">
+                            <li>Radiator / Nachtspeicherofen / Glühlampe / …<br><span
+                                    class="list-add2">Wirkungsgrad ~ 1</span></li>
+                            <li>Infrarotpanel<br><span class="list-add2">Wirkungsgrad ~ 1</span></li>
+                            <li>Wärmepumpe<br><span class="list-add2 fragment" data-fragment-index="7">"Wirkungsgrad" bis zu 6<sup style="font-size: .5em">*)</sup></span></li>
+                        </ul>
+                    </div>
+                    <div class="fragment" data-fragment-index="8">
+                        Strom als Energieträger
+                        <ul class="list-add">
+                            <li class="line-through all-orange">Radiator / Nachtspeicherofen / Glühlampe / …<br><span
+                                    class="list-add2">Wirkungsgrad ~ 1</span></li>
+                            <li class="line-through all-orange">Infrarotpanel<br><span class="list-add2">Wirkungsgrad ~ 1</span>
+                            </li>
+                            <li>Wärmepumpe<br><span class="list-add2">"Wirkungsgrad" bis zu 6<sup style="font-size: .5em">*)</sup></span></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <aside class="notes">
+                H2-ready: max. möglich 20-30%, aber niedrigere Energiedichte<br><br>
+                Wirkungsgrad H2 Elektrolyse: 70-80% (98%)<br>
+                inkl. Kompr. für Speicherung: 60-70%<br>
+                Wirkungsgrad Brennstoffzelle: ~60%
+            </aside>
+        </section>
+
+        <section data-background="images/wp_haus.webp" data-transition="fade">
+            <div style="color: #ffffff;position: absolute">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                     style="transform: scale(2.3) translateX(5.4em) translateY(3.5em) rotate(71deg);">
+                    <path fill="currentColor"
+                          d="M1.478 21.932c.022-.36-.046-.31-.082-.59.074.033.105-.276.107-.395l-.016.006c.005-.178.06-.582.067-.875l-.04.012c.042-.246.025-.707.035-.885-.01-.404-.058-1.037.052-1.586a6.24 6.24 0 01-.074-.372l.018-.05c.003-.023 1.438-.344 1.65.348l.04-.005-.02.127c.006.157-.046.225-.005.218l.015-.213c-.002.157.03.05.057-.007a1.07 1.07 0 00.005.182c-.018.028-.015-.024-.02-.05-.023.082-.07.196-.062.3-.006.16.064.015.057.204-.033.993.027 1.98.06 3.01.017.024.015-.004.02-.034-.003.312.017.588.016.873.022.077.048.097.066.12-.04-.047.075 1.57.092 1.597l-.07.026c.026.31.09.082.1.37-.093.12.054.47.01.574.01-.003.026.136.057.124-.05.05 0 .146-.003.235-.012.033-.02-.02-.04-.044l.003.205c.026.076.06.092.058.006.04.327.2 1.423.33 2.34a.786.786 0 00.025-.06c.083-.355.19-.582.242-.847l.125-.228c.2-.602.745-2.075 1.383-3.512a48.95 48.95 0 011.657-3.4l-.03.04c.872-1.737 3.056-5.124 4.45-6.598.167-.265.443-.592.65-.842-.105.147-.04.122.05.015.65-.744.068-.03.742-.765.406-.407 1.34-1.43 2.33-2.376a61.155 61.155 0 012.39-2.18c.465-.297.97-.763 1.428-1.048l-.053.02c.448-.362 3.128-2.238 3.745-2.522l-.072.054c.527-.26.42-.285.813-.528-.017.095.44-.116.614-.197l-.015-.01c.26-.127.87-.37 1.303-.568l-.034-.03c.376-.134 1.047-.463 1.313-.568.593-.276 1.51-.716 2.372-.935.17-.095.343-.188.52-.278l.086-.013c.044-.01 1.178 1.12.232 1.682l.027.033-.204.056c-.236.093-.363.088-.334.12l.332-.11c-.242.087-.064.054.035.046-.1.036-.197.07-.275.11-.053 0 .03-.03.066-.05-.136.03-.332.054-.485.13-.25.09.004.064-.285.174-1.52.592-2.947 1.317-4.402 2.122-.025.033.015.01.06-.006-.446.23-.828.46-1.227.683-.1.08-.116.12-.14.154.033-.09-2.136 1.345-2.148 1.4l-.068-.04c-.405.287-.072.146-.45.406-.204.026-.604.462-.758.52.007.005-.168.147-.137.163-.088 0-.19.133-.31.21-.05.02.02-.037.04-.074l-.265.185c-.087.095-.09.14.02.057-.687.502-3.623 3.32-4.222 4.016.05-.115.262-.302.288-.426-.192.15-.233.27-.334.32.01.136-.345.406-.396.608l-.087.015-.055.113c-.745.76-.186.16-.792.883-.355.415-.583.564-.754.817.026-.036.078-.15-.024-.05.023.05-.258.272-.262.356-.09.104-.36.458-.32.3-.02.08-.245.408-.08.235-.08.11-.15.22-.218.288l.087-.15c-.28.357-.38.59-.598.798l.075-.153c-.16.22-.295.404-.3.53l.175-.218c-.26.367-.406.596-.646.888l.072-.112c-.335.35-1.664 2.488-1.923 2.858l.052-.204-.22.316c.018-.036.187-.074.228-.11-.463.723-2.234 4.557-2.42 5.297-.082.296.057.08.065.08-.15.34-.108.13-.216.43-.022.083.043-.004.067-.047-.055.128-.08.255-.107.257.042-.17-.043-.123-.057-.207l-.133.385.044-.003c-.03.086-.184.18-.295.564-.207.645-.45 1.338-.636 1.992.026-.004.08-.136.137-.268-.025.087-.072.217-.08.303.007-.17-.108.267-.088.138-.193.363-.286.855-.407 1.246l.077-.014a3.65 3.65 0 01.318-.034l-.08.02c.3.014 1.815-.315 2.1-.323l-.107.084.238-.023c-.025.01-.154-.13-.172-.105.495-.105 2.99-.91 3.396-1.147.162-.097 0-.09-.004-.095.217-.068.11.014.29-.063.044-.028-.027-.033-.057-.028.08-.025.146-.074.16-.054-.09.058-.023.1-.05.155l.228-.102-.024-.033c.05-.023.174.05.39-.072.37-.18.78-.358 1.147-.55-.016-.018-.1.008-.185.033.05-.025.128-.057.166-.096-.07.083.167-.053.105-.002.315-.05.62-.31.883-.383.055.073 1.263 1.03 1.325 1.113.076-.048.152-.095.17-.116-.006.032-.15.132-.24.167l-.04-.04c-.196.092-.027.056-.21.156.013.047.185-.043.334-.125-.13.082-.244.19-.324.176-.116.086.042.04-.1.143-.115.05-.277.09-.39.18l.006.005c-.28.206-.498.183-.756.366l.037-.002c-.087.074-.3.136-.466.25.046-.034.076-.086-.034-.04-.195.124-.35.164-.486.265l-.165.025c-.71.376-3.67 1.368-4.442 1.54h.032c-.582.157-1.47.394-2.38.582l-.346.068-.177.033-.046.008-.014.002c.04-.002-.374.027-.2.016H4.84l-.02-.002-.084-.004c-.22-.01-.438-.02-.645-.033l-.304-.017-.073-.004h-.022l-.003-.002h-.002c.563.254-.77-.344-.63-.283l-.002-.003-.026-.027-.094-.104-.176-.2-.042-.047-.005-.007-.233-.465v-.005l-.002-.017-.004-.03-.014-.12c-.075-.182-.107-.442-.15-.636.036.105.062.064.046-.02-.097-.596.023-.046-.05-.65-.073-.698-.463-3.352-.557-3.97.028-.34-.064-.75-.053-1.08l-.012.033c-.018-.35-.233-2.34-.22-2.757l.013.056z"></path>
+                </svg>
+                <div style="font-size: 1.5em;font-family: 'Architects Daughter', cursive;transform: translateX(9.2em) translateY(4.9em) rotate(-21deg);">
+                    Magie
+                </div>
+            </div>
+        </section>
+
+        <section data-background="#ffffff" class="r-stack stretch">
+            <img src="images/bvwp_grafik.jpg" alt="Funktionsweise WP"
+                 style="position:relative;box-shadow: #ffffff 0 0 20rem 20rem">
+            <p style="position: absolute;font-size: small; inset: 0; top: 105%; color: #999; font-style: italic;">
+                [Bundesverband Wärmepumpe | https://www.waermepumpe.de/waermepumpe/funktion-waermequellen]
+            </p>
+            <div class="fragment"
+                 style="position:absolute;inset: 0;width: 15rem;height: 15rem;top: 5.9rem;left: 1rem;border: 10px solid #fcce00;border-radius: 25px;"></div>
+        </section>
+
+        <section data-background="#ffffff">
+            <div class="r-stack stretch">
+                <img src="images/kmk0.webp" alt="Kältemittelkreislauf 0" class="fragment">
+                <img src="images/kmk1.webp" alt="Kältemittelkreislauf 1" class="fragment">
+                <img src="images/kmk2.webp" alt="Kältemittelkreislauf 2" class="fragment">
+                <img src="images/kmk3.webp" alt="Kältemittelkreislauf 3" class="fragment">
+                <img src="images/kmk4.webp" alt="Kältemittelkreislauf 4" class="fragment">
+                <img src="images/kmk5.webp" alt="Kältemittelkreislauf 5" class="fragment">
+                <img src="images/kmk6.webp" alt="Kältemittelkreislauf 5" class="fragment">
+            </div>
+        </section>
+
+        <section data-background="images/wp_haus_dim.webp" data-transition="fade">
+            <h4>Ist die Leistungsaufnahme konstant?<br><span class="list-add" style="color: #fcce00">&quot;Antriebsenergie&quot; vs. konventionelle Heizung</span>
+            </h4>
+            <div class="fragment fade-left" style="font-size: .9em; max-width: 38ch; margin: 0 auto; padding-top: .5em">
+                📈 Je größer die Temperaturdifferenz zur Quelle, desto größer die Leistungsaufnahme.
+            </div>
+            <div class="fragment fade-left" style="font-size: .9em; max-width: 38ch; margin: 0 auto; padding-top: 1em">
+                📉 Je größer die Temperaturdifferenz zur Quelle, desto kleiner ist der "Wirkungsgrad".
+            </div>
+        </section>
+
+        <section data-background-iframe="https://www.desmos.com/calculator/a0lfpsxyhs?lang=de" data-background-interactive></section>
+
+        <section data-background="images/wp_haus.webp" data-transition="fade">
+            <div style="color: #ffffff;position: absolute">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                     style="transform: scaleX(-1) scale(1.6) translateX(-6em) translateY(3.6em) rotate(-32deg);">
+                    <path fill="currentColor"
+                          d="M1.478 21.932c.022-.36-.046-.31-.082-.59.074.033.105-.276.107-.395l-.016.006c.005-.178.06-.582.067-.875l-.04.012c.042-.246.025-.707.035-.885-.01-.404-.058-1.037.052-1.586a6.24 6.24 0 01-.074-.372l.018-.05c.003-.023 1.438-.344 1.65.348l.04-.005-.02.127c.006.157-.046.225-.005.218l.015-.213c-.002.157.03.05.057-.007a1.07 1.07 0 00.005.182c-.018.028-.015-.024-.02-.05-.023.082-.07.196-.062.3-.006.16.064.015.057.204-.033.993.027 1.98.06 3.01.017.024.015-.004.02-.034-.003.312.017.588.016.873.022.077.048.097.066.12-.04-.047.075 1.57.092 1.597l-.07.026c.026.31.09.082.1.37-.093.12.054.47.01.574.01-.003.026.136.057.124-.05.05 0 .146-.003.235-.012.033-.02-.02-.04-.044l.003.205c.026.076.06.092.058.006.04.327.2 1.423.33 2.34a.786.786 0 00.025-.06c.083-.355.19-.582.242-.847l.125-.228c.2-.602.745-2.075 1.383-3.512a48.95 48.95 0 011.657-3.4l-.03.04c.872-1.737 3.056-5.124 4.45-6.598.167-.265.443-.592.65-.842-.105.147-.04.122.05.015.65-.744.068-.03.742-.765.406-.407 1.34-1.43 2.33-2.376a61.155 61.155 0 012.39-2.18c.465-.297.97-.763 1.428-1.048l-.053.02c.448-.362 3.128-2.238 3.745-2.522l-.072.054c.527-.26.42-.285.813-.528-.017.095.44-.116.614-.197l-.015-.01c.26-.127.87-.37 1.303-.568l-.034-.03c.376-.134 1.047-.463 1.313-.568.593-.276 1.51-.716 2.372-.935.17-.095.343-.188.52-.278l.086-.013c.044-.01 1.178 1.12.232 1.682l.027.033-.204.056c-.236.093-.363.088-.334.12l.332-.11c-.242.087-.064.054.035.046-.1.036-.197.07-.275.11-.053 0 .03-.03.066-.05-.136.03-.332.054-.485.13-.25.09.004.064-.285.174-1.52.592-2.947 1.317-4.402 2.122-.025.033.015.01.06-.006-.446.23-.828.46-1.227.683-.1.08-.116.12-.14.154.033-.09-2.136 1.345-2.148 1.4l-.068-.04c-.405.287-.072.146-.45.406-.204.026-.604.462-.758.52.007.005-.168.147-.137.163-.088 0-.19.133-.31.21-.05.02.02-.037.04-.074l-.265.185c-.087.095-.09.14.02.057-.687.502-3.623 3.32-4.222 4.016.05-.115.262-.302.288-.426-.192.15-.233.27-.334.32.01.136-.345.406-.396.608l-.087.015-.055.113c-.745.76-.186.16-.792.883-.355.415-.583.564-.754.817.026-.036.078-.15-.024-.05.023.05-.258.272-.262.356-.09.104-.36.458-.32.3-.02.08-.245.408-.08.235-.08.11-.15.22-.218.288l.087-.15c-.28.357-.38.59-.598.798l.075-.153c-.16.22-.295.404-.3.53l.175-.218c-.26.367-.406.596-.646.888l.072-.112c-.335.35-1.664 2.488-1.923 2.858l.052-.204-.22.316c.018-.036.187-.074.228-.11-.463.723-2.234 4.557-2.42 5.297-.082.296.057.08.065.08-.15.34-.108.13-.216.43-.022.083.043-.004.067-.047-.055.128-.08.255-.107.257.042-.17-.043-.123-.057-.207l-.133.385.044-.003c-.03.086-.184.18-.295.564-.207.645-.45 1.338-.636 1.992.026-.004.08-.136.137-.268-.025.087-.072.217-.08.303.007-.17-.108.267-.088.138-.193.363-.286.855-.407 1.246l.077-.014a3.65 3.65 0 01.318-.034l-.08.02c.3.014 1.815-.315 2.1-.323l-.107.084.238-.023c-.025.01-.154-.13-.172-.105.495-.105 2.99-.91 3.396-1.147.162-.097 0-.09-.004-.095.217-.068.11.014.29-.063.044-.028-.027-.033-.057-.028.08-.025.146-.074.16-.054-.09.058-.023.1-.05.155l.228-.102-.024-.033c.05-.023.174.05.39-.072.37-.18.78-.358 1.147-.55-.016-.018-.1.008-.185.033.05-.025.128-.057.166-.096-.07.083.167-.053.105-.002.315-.05.62-.31.883-.383.055.073 1.263 1.03 1.325 1.113.076-.048.152-.095.17-.116-.006.032-.15.132-.24.167l-.04-.04c-.196.092-.027.056-.21.156.013.047.185-.043.334-.125-.13.082-.244.19-.324.176-.116.086.042.04-.1.143-.115.05-.277.09-.39.18l.006.005c-.28.206-.498.183-.756.366l.037-.002c-.087.074-.3.136-.466.25.046-.034.076-.086-.034-.04-.195.124-.35.164-.486.265l-.165.025c-.71.376-3.67 1.368-4.442 1.54h.032c-.582.157-1.47.394-2.38.582l-.346.068-.177.033-.046.008-.014.002c.04-.002-.374.027-.2.016H4.84l-.02-.002-.084-.004c-.22-.01-.438-.02-.645-.033l-.304-.017-.073-.004h-.022l-.003-.002h-.002c.563.254-.77-.344-.63-.283l-.002-.003-.026-.027-.094-.104-.176-.2-.042-.047-.005-.007-.233-.465v-.005l-.002-.017-.004-.03-.014-.12c-.075-.182-.107-.442-.15-.636.036.105.062.064.046-.02-.097-.596.023-.046-.05-.65-.073-.698-.463-3.352-.557-3.97.028-.34-.064-.75-.053-1.08l-.012.033c-.018-.35-.233-2.34-.22-2.757l.013.056z"></path>
+                </svg>
+                <div style="font-size: 1.1em;font-family: 'Architects Daughter', cursive;transform: translateX(8.2em) translateY(2.9em) rotate(-32deg)">
+                    Kühlung
+                </div>
+            </div>
+            <div style="color: #ffffff;position: absolute">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                     style="transform: scale(2.3) translateX(5.4em) translateY(3.5em) rotate(71deg);">
+                    <path fill="currentColor"
+                          d="M1.478 21.932c.022-.36-.046-.31-.082-.59.074.033.105-.276.107-.395l-.016.006c.005-.178.06-.582.067-.875l-.04.012c.042-.246.025-.707.035-.885-.01-.404-.058-1.037.052-1.586a6.24 6.24 0 01-.074-.372l.018-.05c.003-.023 1.438-.344 1.65.348l.04-.005-.02.127c.006.157-.046.225-.005.218l.015-.213c-.002.157.03.05.057-.007a1.07 1.07 0 00.005.182c-.018.028-.015-.024-.02-.05-.023.082-.07.196-.062.3-.006.16.064.015.057.204-.033.993.027 1.98.06 3.01.017.024.015-.004.02-.034-.003.312.017.588.016.873.022.077.048.097.066.12-.04-.047.075 1.57.092 1.597l-.07.026c.026.31.09.082.1.37-.093.12.054.47.01.574.01-.003.026.136.057.124-.05.05 0 .146-.003.235-.012.033-.02-.02-.04-.044l.003.205c.026.076.06.092.058.006.04.327.2 1.423.33 2.34a.786.786 0 00.025-.06c.083-.355.19-.582.242-.847l.125-.228c.2-.602.745-2.075 1.383-3.512a48.95 48.95 0 011.657-3.4l-.03.04c.872-1.737 3.056-5.124 4.45-6.598.167-.265.443-.592.65-.842-.105.147-.04.122.05.015.65-.744.068-.03.742-.765.406-.407 1.34-1.43 2.33-2.376a61.155 61.155 0 012.39-2.18c.465-.297.97-.763 1.428-1.048l-.053.02c.448-.362 3.128-2.238 3.745-2.522l-.072.054c.527-.26.42-.285.813-.528-.017.095.44-.116.614-.197l-.015-.01c.26-.127.87-.37 1.303-.568l-.034-.03c.376-.134 1.047-.463 1.313-.568.593-.276 1.51-.716 2.372-.935.17-.095.343-.188.52-.278l.086-.013c.044-.01 1.178 1.12.232 1.682l.027.033-.204.056c-.236.093-.363.088-.334.12l.332-.11c-.242.087-.064.054.035.046-.1.036-.197.07-.275.11-.053 0 .03-.03.066-.05-.136.03-.332.054-.485.13-.25.09.004.064-.285.174-1.52.592-2.947 1.317-4.402 2.122-.025.033.015.01.06-.006-.446.23-.828.46-1.227.683-.1.08-.116.12-.14.154.033-.09-2.136 1.345-2.148 1.4l-.068-.04c-.405.287-.072.146-.45.406-.204.026-.604.462-.758.52.007.005-.168.147-.137.163-.088 0-.19.133-.31.21-.05.02.02-.037.04-.074l-.265.185c-.087.095-.09.14.02.057-.687.502-3.623 3.32-4.222 4.016.05-.115.262-.302.288-.426-.192.15-.233.27-.334.32.01.136-.345.406-.396.608l-.087.015-.055.113c-.745.76-.186.16-.792.883-.355.415-.583.564-.754.817.026-.036.078-.15-.024-.05.023.05-.258.272-.262.356-.09.104-.36.458-.32.3-.02.08-.245.408-.08.235-.08.11-.15.22-.218.288l.087-.15c-.28.357-.38.59-.598.798l.075-.153c-.16.22-.295.404-.3.53l.175-.218c-.26.367-.406.596-.646.888l.072-.112c-.335.35-1.664 2.488-1.923 2.858l.052-.204-.22.316c.018-.036.187-.074.228-.11-.463.723-2.234 4.557-2.42 5.297-.082.296.057.08.065.08-.15.34-.108.13-.216.43-.022.083.043-.004.067-.047-.055.128-.08.255-.107.257.042-.17-.043-.123-.057-.207l-.133.385.044-.003c-.03.086-.184.18-.295.564-.207.645-.45 1.338-.636 1.992.026-.004.08-.136.137-.268-.025.087-.072.217-.08.303.007-.17-.108.267-.088.138-.193.363-.286.855-.407 1.246l.077-.014a3.65 3.65 0 01.318-.034l-.08.02c.3.014 1.815-.315 2.1-.323l-.107.084.238-.023c-.025.01-.154-.13-.172-.105.495-.105 2.99-.91 3.396-1.147.162-.097 0-.09-.004-.095.217-.068.11.014.29-.063.044-.028-.027-.033-.057-.028.08-.025.146-.074.16-.054-.09.058-.023.1-.05.155l.228-.102-.024-.033c.05-.023.174.05.39-.072.37-.18.78-.358 1.147-.55-.016-.018-.1.008-.185.033.05-.025.128-.057.166-.096-.07.083.167-.053.105-.002.315-.05.62-.31.883-.383.055.073 1.263 1.03 1.325 1.113.076-.048.152-.095.17-.116-.006.032-.15.132-.24.167l-.04-.04c-.196.092-.027.056-.21.156.013.047.185-.043.334-.125-.13.082-.244.19-.324.176-.116.086.042.04-.1.143-.115.05-.277.09-.39.18l.006.005c-.28.206-.498.183-.756.366l.037-.002c-.087.074-.3.136-.466.25.046-.034.076-.086-.034-.04-.195.124-.35.164-.486.265l-.165.025c-.71.376-3.67 1.368-4.442 1.54h.032c-.582.157-1.47.394-2.38.582l-.346.068-.177.033-.046.008-.014.002c.04-.002-.374.027-.2.016H4.84l-.02-.002-.084-.004c-.22-.01-.438-.02-.645-.033l-.304-.017-.073-.004h-.022l-.003-.002h-.002c.563.254-.77-.344-.63-.283l-.002-.003-.026-.027-.094-.104-.176-.2-.042-.047-.005-.007-.233-.465v-.005l-.002-.017-.004-.03-.014-.12c-.075-.182-.107-.442-.15-.636.036.105.062.064.046-.02-.097-.596.023-.046-.05-.65-.073-.698-.463-3.352-.557-3.97.028-.34-.064-.75-.053-1.08l-.012.033c-.018-.35-.233-2.34-.22-2.757l.013.056z"></path>
+                </svg>
+                <div style="font-size: 1.5em;font-family: 'Architects Daughter', cursive;transform: translateX(9.2em) translateY(4.9em) rotate(-21deg);">
+                    Heizung
+                </div>
+            </div>
+        </section>
+
+        <section data-background="images/heatpump-paradise.webp"></section>
+
+        <section data-background="#ffffff">
+            <div style="position:absolute;font-family: 'Architects Daughter', cursive; transform: translateX(-6em) translateY(0.5em) rotate(-15deg) scale(.5); color: #7f9f7f">
+                <span style="text-decoration: underline">Anwendungsfall</span><br>Wassergeführte<br>Zentralheizung
+            </div>
+            <div class="r-stack">
+                <div data-fragment-index="1" class="fragment fade-out">
+                    <h3>Welches Gerät passt?</h3>
+                </div>
+                <div data-fragment-index="1" class="fragment fade-in-then-out">
+                    <h4>Wolf CHA07</h4>
+                    <img src="images/graph_wolf_cha07.png" alt="Wolf Cha07 Leistungsdiagramm" style="max-height: 45vh">
+                </div>
+                <div data-fragment-index="2" class="fragment fade-in-then-out">
+                    <h4>Nibe F2948-6</h4>
+                    <img src="images/graph_nibe_f29496.png" alt="Wolf Cha07 Leistungsdiagramm" style="max-height: 45vh">
+                </div>
+                <div data-fragment-index="3" class="fragment fade-in-then-out">
+                    <h4>Panasonic WH-MDC05JE5 vs WH-MDC07JE5</h4>
+                    <img src="images/graph_panasonic_j5,7.png" alt="Panasonic J-Serie Leistungsdiagramm"
+                         style="max-height: 55vh">
+                </div>
+                <div data-fragment-index="4" class="fragment fade-in-then-out">
+                    <h4>Panasonic WDH F2948-6</h4>
+                    <img src="images/graph_panasonic_j5,7_annotated.png"
+                         alt="Panasonic J-Serie Leistungsdiagramm, annotiert" style="max-height: 55vh">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h4 style="margin-bottom: 1em">Wie steht es um...?</h4>
+            <ul style="font-size: .8em">
+                <li>Mindest-Volumenstrom<br><span class="list-add">Passend zur Haushydraulik?</span></li>
+                <li>Aufstellungsort<br><span class="list-add">Abstand? Lautstärke? Design?</span></li>
+                <li>System<br><span class="list-add">Vendor Lock-In? Komplexität?</span></li>
+                <li>Wirtschaftlichkeit<br><span class="list-add">Kosten? Lebensdauer? Wartung?</span></li>
+                <li>…</li>
+            </ul>
+        </section>
+
+        <section data-background="images/wp_haus_dim.webp" data-transition="fade">
+            <div class="r-stack">
+                <div data-fragment-index="1" class="fragment fade-out">
+                    <h3>Wie wird die Sache effizient?</h3>
+                </div>
+                <ul style="display: flex; flex-direction: column; gap: .75em">
+                    <li class="fragment">Vorlauftemperatur runter ✅</li>
+                    <li class="fragment">Volumenstrom rauf ✅<br><span class="list-add">= Vorlauftemperatur runter</span>
+                    </li>
+                    <li class="fragment">Heizflächen nutzen/vergrößern ✅<br><span class="list-add">= Vorlauftemperatur runter</span>
+                    </li>
+                    <li class="fragment">Heizzeiten maximieren ✅<br><span
+                            class="list-add">= Vorlauftemperatur runter</span>
+                    </li>
+                    <li class="fragment">Modulieren wo möglich ✅<br><span
+                            class="list-add">= Vorlauftemperatur runter</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section data-background="images/wp_haus_dim.webp" data-transition="fade">
+            <ul style="display: flex; flex-direction: column; gap: .5em">
+                <li class="fragment">Thermostate, Drosselung ❌<br><span
+                        class="list-add">beschränkter Volumenstrom</span>
+                </li>
+                <li class="fragment">Pufferspeicher (hydr. Weiche), Mischer, … ❌<br><span
+                        class="list-add">unnötig höhere Vorlauftemperatur</span></li>
+                <li class="fragment">fehlende/schlechte Leitungsdämmung ❌<br><span
+                        class="list-add">unnötig höhere Vorlauftemperatur</span></li>
+                <li class="fragment">…</li>
+            </ul>
+        </section>
+
+        <section data-background="images/title.webp"></section>
+    </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/zoom/zoom.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/search/search.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script src="plugin/chalkboard/chalkboard_plugin.js"></script>
+<script src="plugin/chalkboard/controls_plugin.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        controls: true,
+        progress: false,
+        center: true,
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealChalkboard, RevealCustomControls]
+    });
+
+    Reveal.on('fragmentshown', (e) => {
+        e.fragments.forEach(f => {
+            if (f.parentElement.classList.contains('x-stack')) {
+                Array.from(f.parentElement.children).forEach(child => child.classList.remove('x-stack-visible'));
+                f.classList.add('x-stack-visible');
+            }
+        });
+    });
+</script>
+</body>
+</html>
